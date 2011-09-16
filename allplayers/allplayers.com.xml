@@ -1,0 +1,646 @@
+<?xml version="1.0"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+  <doc title="allplayers.com"/>
+  <resources base="https://www.allplayers.com/api/v1/rest">
+    <doc title="Public REST Interface v1"/>
+    <resource path="users">
+      <resource path="{uuid}">
+        <method name="GET" id="_apci_api_user_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Users</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="true"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/users/{uuid}"/>
+          <doc>retrieve full user information</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+          <response>
+            <representation mediaType="application/json">
+              <doc>["uuid","email","picture","username","firstname","lastname","middlename","gender","nickname","phone","address","sizes","emergency_contact","profile_url","uri"]</doc>
+            </representation>
+          </response>
+        </method>
+        <resource path="groups">
+          <method name="GET" id="_apci_api_user_get_group_subs-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Users</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="true"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/users/{uuid}/groups"/>
+            <doc>Show groups user is a member of.</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>The limit of groups returned</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of users returned, default 0</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","title","description","logo","events","albums","activity_level","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+        <resource path="friends">
+          <method name="GET" id="_apci_api_user_get_friends-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Users</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="true"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/users/{uuid}/friends"/>
+            <doc>Show friends for a given user</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>The limit of groups returned</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of users returned, default 0</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","firstname","lastname","picture","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+        <resource path="groupmates">
+          <method name="GET" id="_apci_api_user_get_groupmates-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Users</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="true"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/users/{uuid}/groupmates"/>
+            <doc>Show groupmates for a given user</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>The limit of groups returned</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of users returned, default 0</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","picture","firstname","lastname","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+        <resource path="events">
+          <method name="GET" id="_apci_api_user_get_events-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Users</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="true"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/users/{uuid}/events"/>
+            <doc>retrieve a list of events for this user</doc>
+            <request>
+              <param type="string" required="false" style="query" name="month" default="current">
+                <doc>the month passed in as 2011-9</doc>
+              </param>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>How many events would you like to receive</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of events returned, default 0</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","title","description","category","start","end","group_uuid","resource","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+      </resource>
+    </resource>
+    <resource path="groups">
+      <resource path="{uuid}">
+        <method name="GET" id="_apci_api_groups_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Groups</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="false"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/groups/{uuid}"/>
+          <doc>Get Group information by Group ID</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+          <response>
+            <representation mediaType="application/json">
+              <doc>["uuid","title","description","location","activity_level","list_in_directory","active","registration_fees_enabled","approved_for_payment","accept_amex","payee_uuid","approved_for_idverify","group_mates_enabled","comments","parent_approval_enabled","sort_order","override_default_group_permissions","primary_color","secondary_color","node_status","logo","uri","url","groups_above_uuid"]</doc>
+            </representation>
+          </response>
+        </method>
+        <resource path="albums">
+          <method name="GET" id="_apci_api_groups_albums_retrieve-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Groups</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="false"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/groups/{uuid}/albums"/>
+            <doc>retrieve a list of albums for this group</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>Limit of albums.</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","title","description","activity_level","rep_photo","photo_count","modified_date","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+        <resource path="events">
+          <method name="GET" id="_apci_api_groups_events_retrieve-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Groups</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="false"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/groups/{uuid}/events"/>
+            <doc>retrieve a list of events for this group</doc>
+            <request>
+              <param type="string" required="false" style="query" name="month" default="current">
+                <doc>The month for which to retrieve events, passed in as 2011-9</doc>
+              </param>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>How many events would you like to receive</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of events returned, default 0</doc>
+              </param>
+            </request>
+          </method>
+        </resource>
+        <resource path="members">
+          <method name="GET" id="_apci_api_groups_members_retrieve-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Groups</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="true"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/groups/{uuid}/members"/>
+            <doc>retrieve a list of members for this group</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>How many members would you like to receive</doc>
+              </param>
+              <param type="int" required="false" style="query" name="admins_only" default="">
+                <doc>Return only members of the group.</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","picture","fname","lname"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+      </resource>
+      <resource>
+        <resource path="photos">
+          <method name="GET" id="_apci_api_groups_photos_retrieve-gid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Groups</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="false"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/groups/{uuid}/photos"/>
+            <doc>retrieve a list of photos for this group</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>How many photos would you like to receive from each album</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["photo_uuid","album_uuid","group_uuid","photo_thumb","photo_full","title","description","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+      </resource>
+      <method name="GET" id="_apci_api_groups_index-search">
+        <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+        <apigee:tags>
+          <apigee:tag primary="true">Groups</apigee:tag>
+          <apigee:tag>Status</apigee:tag>
+        </apigee:tags>
+        <!-- Is authentication required for this method? -->
+        <apigee:authentication required="false"/>
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+        <apigee:example url="/groups"/>
+        <doc>Search Groups</doc>
+        <request>
+          <param type="string" required="false" style="query" name="search" default="*">
+            <doc>Search terms.</doc>
+          </param>
+          <param type="string" required="false" style="query" name="distance" default="*">
+            <doc>Distance from postal code (format: distance[postal_code]=00000&amp;distance[search_distance]=100&amp;distance[search_units]=mile).</doc>
+          </param>
+          <param type="string" required="false" style="query" name="fields" default="*">
+            <doc>The fields to get.</doc>
+          </param>
+          <param type="int" required="false" style="query" name="limit" default="10">
+            <doc>Limit the amount of groups returned, default 10</doc>
+          </param>
+          <param type="int" required="false" style="query" name="offset" default="0">
+            <doc>Offset the list of groups returned, default 0</doc>
+          </param>
+          <param type="string" required="false" style="query" name="sort" default="activity">
+            <doc>Sort the groups returned, default activity level</doc>
+          </param>
+          <param type="string" required="false" style="query" name="modified" default="">
+            <doc>Return only groups created or updated since the supplied unix timestamp.</doc>
+          </param>
+        </request>
+        <response>
+          <representation mediaType="application/json">
+            <doc>["uuid","title","description","location","activity_level","list_in_directory","active","registration_fees_enabled","approved_for_payment","accept_amex","payee_uuid","approved_for_idverify","group_mates_enabled","comments","parent_approval_enabled","sort_order","override_default_group_permissions","primary_color","secondary_color","node_status","logo","uri","url","groups_above_uuid"]</doc>
+          </representation>
+        </response>
+      </method>
+    </resource>
+    <resource path="albums">
+      <resource path="{uuid}">
+        <method name="GET" id="_albums_resource_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Albums</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="false"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/albums/{uuid}"/>
+          <doc>get album by uuid</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+          <response>
+            <representation mediaType="application/json">
+              <doc>["uuid","title","description","activity_level","rep_photo","group_uuid","photo_uuid","photo_count","modified_date","uri"]</doc>
+            </representation>
+          </response>
+        </method>
+        <resource path="photos">
+          <method name="GET" id="_albums_resource_photos-uuid">
+            <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+            <apigee:tags>
+              <apigee:tag primary="true">Albums</apigee:tag>
+              <apigee:tag>Status</apigee:tag>
+            </apigee:tags>
+            <!-- Is authentication required for this method? -->
+            <apigee:authentication required="false"/>
+            <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+            <apigee:example url="/albums/{uuid}/photos"/>
+            <doc>get album photos by uuid</doc>
+            <request>
+              <param type="string" required="false" style="query" name="fields" default="*">
+                <doc>The fields to get.</doc>
+              </param>
+              <param type="int" required="false" style="query" name="limit" default="10">
+                <doc>Limit the amount of photos returned, default 10</doc>
+              </param>
+              <param type="int" required="false" style="query" name="offset" default="0">
+                <doc>Offset the list of albums returned, default 0</doc>
+              </param>
+            </request>
+            <response>
+              <representation mediaType="application/json">
+                <doc>["uuid","group_uuid","photo_thumb","photo_full","title","description","uri"]</doc>
+              </representation>
+            </response>
+          </method>
+        </resource>
+      </resource>
+    </resource>
+    <resource path="photos">
+      <resource path="{uuid}">
+        <method name="GET" id="_photos_resource_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Groups</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="false"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/groups/{uuid}/photos"/>
+          <doc>Get photo by uuid</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+          <response>
+            <representation mediaType="application/json">
+              <doc>["uuid","album_uuid","group_uuid","photo_thumb","photo_full","title","description","uri"]</doc>
+            </representation>
+          </response>
+        </method>
+      </resource>
+    </resource>
+    <resource path="messages">
+      <resource path="{id}">
+        <method name="GET" id="_apci_api_messages_retrieve-id">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Messages</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="true"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/messages/{id}"/>
+          <doc>Retrieve a single message or thread</doc>
+          <request>
+            <param type="string" required="false" style="query" name="type" default="thread">
+              <doc>Type - Message or Thread.  If nothing, then thread</doc>
+            </param>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+        </method>
+        <method name="PUT" id="_apci_api_messages_update-id">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Messages</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="true"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/messages/{id}"/>
+          <doc>PUT: Update a messages status</doc>
+          <request>
+            <representation mediaType="application/x-www-form-urlencoded">
+              <param type="int" required="true" style="plain" name="status">
+                <doc>the status to be set</doc>
+              </param>
+              <param type="string" required="false" style="plain" name="type" default="thread">
+                <doc>thread or message</doc>
+              </param>
+            </representation>
+            <representation mediaType="application/x-yaml">
+              <param type="int" required="true" style="plain" name="status">
+                <doc>the status to be set</doc>
+              </param>
+              <param type="string" required="false" style="plain" name="type" default="thread">
+                <doc>thread or message</doc>
+              </param>
+            </representation>
+            <representation mediaType="application/json">
+              <param type="int" required="true" style="plain" name="status">
+                <doc>the status to be set</doc>
+              </param>
+              <param type="string" required="false" style="plain" name="type" default="thread">
+                <doc>thread or message</doc>
+              </param>
+            </representation>
+            <representation mediaType="application/vnd.php.serialized">
+              <param type="int" required="true" style="plain" name="status">
+                <doc>the status to be set</doc>
+              </param>
+              <param type="string" required="false" style="plain" name="type" default="thread">
+                <doc>thread or message</doc>
+              </param>
+            </representation>
+          </request>
+        </method>
+        <method name="DELETE" id="_apci_api_messages_delete-id">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Messages</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="true"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/messages/{id}"/>
+          <doc>Delete: delete something, will find out what</doc>
+          <request>
+            <param type="string" required="false" style="query" name="type" default="thread">
+              <doc>is it a thread or a message?</doc>
+            </param>
+          </request>
+        </method>
+      </resource>
+      <method name="GET" id="_apci_api_messages_index-box">
+        <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+        <apigee:tags>
+          <apigee:tag primary="true">Messages</apigee:tag>
+          <apigee:tag>Status</apigee:tag>
+        </apigee:tags>
+        <!-- Is authentication required for this method? -->
+        <apigee:authentication required="true"/>
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+        <apigee:example url="/messages"/>
+        <doc>Messages Index</doc>
+        <request>
+          <param type="string" required="false" style="query" name="box" default="list">
+            <doc>which box to look in (inbox, sent.  If nothing is passed, then all)</doc>
+          </param>
+          <param type="string" required="false" style="query" name="fields" default="*">
+            <doc>The fields to get.</doc>
+          </param>
+          <param type="int" required="false" style="query" name="limit" default="10">
+            <doc>Limit the amount of messages returned, default 10</doc>
+          </param>
+          <param type="int" required="false" style="query" name="page" default="0">
+            <doc>Limit the amount of messages returned, default 10</doc>
+          </param>
+        </request>
+      </method>
+      <method name="POST" id="_apci_api_messages_create-id">
+        <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+        <apigee:tags>
+          <apigee:tag primary="true">Messages</apigee:tag>
+          <apigee:tag>Status</apigee:tag>
+        </apigee:tags>
+        <!-- Is authentication required for this method? -->
+        <apigee:authentication required="true"/>
+        <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+        <apigee:example url="/messages"/>
+        <doc>POST: Send A New Message, Create New Thread or Reply To A thread</doc>
+        <request>
+          <representation mediaType="application/x-www-form-urlencoded">
+            <param type="int" required="false" style="query" name="thread_id">
+              <doc>id of the thread</doc>
+            </param>
+            <param type="array" required="false" style="query" name="recipients">
+              <doc>An array of recipient users uuids</doc>
+            </param>
+            <param type="string" required="false" style="query" name="subject">
+              <doc>Message subject</doc>
+            </param>
+            <param type="string" required="true" style="query" name="body">
+              <doc>Message body</doc>
+            </param>
+          </representation>
+          <representation mediaType="application/x-yaml">
+            <param type="int" required="false" style="query" name="thread_id">
+              <doc>id of the thread</doc>
+            </param>
+            <param type="array" required="false" style="query" name="recipients">
+              <doc>An array of recipient users uuids</doc>
+            </param>
+            <param type="string" required="false" style="query" name="subject">
+              <doc>Message subject</doc>
+            </param>
+            <param type="string" required="true" style="query" name="body">
+              <doc>Message body</doc>
+            </param>
+          </representation>
+          <representation mediaType="application/json">
+            <param type="int" required="false" style="query" name="thread_id">
+              <doc>id of the thread</doc>
+            </param>
+            <param type="array" required="false" style="query" name="recipients">
+              <doc>An array of recipient users uuids</doc>
+            </param>
+            <param type="string" required="false" style="query" name="subject">
+              <doc>Message subject</doc>
+            </param>
+            <param type="string" required="true" style="query" name="body">
+              <doc>Message body</doc>
+            </param>
+          </representation>
+          <representation mediaType="application/vnd.php.serialized">
+            <param type="int" required="false" style="query" name="thread_id">
+              <doc>id of the thread</doc>
+            </param>
+            <param type="array" required="false" style="query" name="recipients">
+              <doc>An array of recipient users uuids</doc>
+            </param>
+            <param type="string" required="false" style="query" name="subject">
+              <doc>Message subject</doc>
+            </param>
+            <param type="string" required="true" style="query" name="body">
+              <doc>Message body</doc>
+            </param>
+          </representation>
+        </request>
+      </method>
+    </resource>
+    <resource path="broadcasts"/>
+    <resource path="announcements"/>
+    <resource path="events">
+      <resource path="{uuid}">
+        <method name="GET" id="_apci_api_events_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Events</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="false"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/events/{uuid}"/>
+          <doc>Retrieve Event by uuid</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+        </method>
+      </resource>
+    </resource>
+    <resource path="resources">
+      <resource path="{uuid}">
+        <method name="GET" id="_apci_api_resources_retrieve-uuid">
+          <!-- apigee:tags are used to organize the list of methods. Primary tag will list the default placement. -->
+          <apigee:tags>
+            <apigee:tag primary="true">Resources</apigee:tag>
+            <apigee:tag>Status</apigee:tag>
+          </apigee:tags>
+          <!-- Is authentication required for this method? -->
+          <apigee:authentication required="false"/>
+          <!-- Example element is used to specify the sample URL to display in the Console's request URL field. -->
+          <apigee:example url="/resources/{uuid}"/>
+          <doc>Retrieve Resource by Resource UUID</doc>
+          <request>
+            <param type="string" required="false" style="query" name="fields" default="*">
+              <doc>The fields to get.</doc>
+            </param>
+          </request>
+        </method>
+      </resource>
+    </resource>
+    <resource path="relationships"/>
+  </resources>
+</application>
