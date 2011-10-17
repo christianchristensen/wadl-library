@@ -1,0 +1,6 @@
+[submodule "wadl-stylesheet"]
+	path = wadl-stylesheet
+	url = https://github.com/ipcsystems/wadl-stylesheet.git
+[submodule "wadl_stylesheets"]
+	path = wadl_stylesheets
+	url = https://github.com/mnot/wadl_stylesheets.git
